@@ -1,0 +1,16 @@
+{
+    "name": "GameWarriors.adtrace.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9adef38a85bac954a8be33976f5e9918"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
