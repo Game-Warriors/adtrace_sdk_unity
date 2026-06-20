@@ -1,40 +1,37 @@
-﻿using System;
+﻿using SimpleJSON;
+using System;
 using System.Collections.Generic;
 
 namespace io.adtrace.sdk
 {
-    public class AdTraceEventFailure
+    public class AdTraceSessionFailure
     {
         public string Adid { get; set; }
         public string Message { get; set; }
         public string Timestamp { get; set; }
-        public string EventToken { get; set; }
-        public string CallbackId { get; set; }
         public bool WillRetry { get; set; }
         public Dictionary<string, object> JsonResponse { get; set; }
 
-        public AdTraceEventFailure() {}
+        public AdTraceSessionFailure() {}
 
-        public AdTraceEventFailure(Dictionary<string, string> eventFailureDataMap)
+        public AdTraceSessionFailure(Dictionary<string, string> sessionFailureDataMap)
         {
-            if (eventFailureDataMap == null)
+            if (sessionFailureDataMap == null)
             {
                 return;
             }
 
-            Adid = AdTraceUtils.TryGetValue(eventFailureDataMap, AdTraceUtils.KeyAdid);
-            Message = AdTraceUtils.TryGetValue(eventFailureDataMap, AdTraceUtils.KeyMessage);
-            Timestamp = AdTraceUtils.TryGetValue(eventFailureDataMap, AdTraceUtils.KeyTimestamp);
-            EventToken = AdTraceUtils.TryGetValue(eventFailureDataMap, AdTraceUtils.KeyEventToken);
-            CallbackId = AdTraceUtils.TryGetValue(eventFailureDataMap, AdTraceUtils.KeyCallbackId);
+            Adid = AdTraceUtils.TryGetValue(sessionFailureDataMap, AdTraceUtils.KeyAdid);
+            Message = AdTraceUtils.TryGetValue(sessionFailureDataMap, AdTraceUtils.KeyMessage);
+            Timestamp = AdTraceUtils.TryGetValue(sessionFailureDataMap, AdTraceUtils.KeyTimestamp);
 
             bool willRetry;
-            if (bool.TryParse(AdTraceUtils.TryGetValue(eventFailureDataMap, AdTraceUtils.KeyWillRetry), out willRetry))
+            if (bool.TryParse(AdTraceUtils.TryGetValue(sessionFailureDataMap, AdTraceUtils.KeyWillRetry), out willRetry))
             {
                 WillRetry = willRetry;
             }
 
-            string jsonResponseString = AdTraceUtils.TryGetValue(eventFailureDataMap, AdTraceUtils.KeyJsonResponse);
+            string jsonResponseString = AdTraceUtils.TryGetValue(sessionFailureDataMap, AdTraceUtils.KeyJsonResponse);
             var jsonResponseNode = JSON.Parse(jsonResponseString);
             if (jsonResponseNode != null && jsonResponseNode.AsObject != null)
             {
@@ -43,19 +40,17 @@ namespace io.adtrace.sdk
             }
         }
 
-        public AdTraceEventFailure(string jsonString)
+        public AdTraceSessionFailure(string jsonString)
         {
             var jsonNode = JSON.Parse(jsonString);
-            if (jsonNode == null)
-            {
+            if (jsonNode == null) 
+			{
                 return;
             }
 
             Adid = AdTraceUtils.GetJsonString(jsonNode, AdTraceUtils.KeyAdid);
             Message = AdTraceUtils.GetJsonString(jsonNode, AdTraceUtils.KeyMessage);
             Timestamp = AdTraceUtils.GetJsonString(jsonNode, AdTraceUtils.KeyTimestamp);
-            EventToken = AdTraceUtils.GetJsonString(jsonNode, AdTraceUtils.KeyEventToken);
-            CallbackId = AdTraceUtils.GetJsonString(jsonNode, AdTraceUtils.KeyCallbackId);
             WillRetry = Convert.ToBoolean(AdTraceUtils.GetJsonString(jsonNode, AdTraceUtils.KeyWillRetry));
 
             var jsonResponseNode = jsonNode[AdTraceUtils.KeyJsonResponse];

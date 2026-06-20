@@ -1,34 +1,30 @@
-﻿using System;
+﻿using SimpleJSON;
+using System;
 using System.Collections.Generic;
 
 namespace io.adtrace.sdk
 {
-    public class AdTraceEventSuccess
+    public class AdTraceSessionSuccess
     {
         public string Adid { get; set; }
         public string Message { get; set; }
         public string Timestamp { get; set; }
-        public string EventToken { get; set; }
-        public string CallbackId { get; set; }
-
         public Dictionary<string, object> JsonResponse { get; set; }
 
-        public AdTraceEventSuccess() {}
+        public AdTraceSessionSuccess() {}
 
-        public AdTraceEventSuccess(Dictionary<string, string> eventSuccessDataMap)
+        public AdTraceSessionSuccess(Dictionary<string, string> sessionSuccessDataMap)
         {
-            if (eventSuccessDataMap == null)
+            if (sessionSuccessDataMap == null)
             {
                 return;
             }
 
-            Adid = AdTraceUtils.TryGetValue(eventSuccessDataMap, AdTraceUtils.KeyAdid);
-            Message = AdTraceUtils.TryGetValue(eventSuccessDataMap, AdTraceUtils.KeyMessage);
-            Timestamp = AdTraceUtils.TryGetValue(eventSuccessDataMap, AdTraceUtils.KeyTimestamp);
-            EventToken = AdTraceUtils.TryGetValue(eventSuccessDataMap, AdTraceUtils.KeyEventToken);
-            CallbackId = AdTraceUtils.TryGetValue(eventSuccessDataMap, AdTraceUtils.KeyCallbackId);
+            Adid = AdTraceUtils.TryGetValue(sessionSuccessDataMap, AdTraceUtils.KeyAdid);
+            Message = AdTraceUtils.TryGetValue(sessionSuccessDataMap, AdTraceUtils.KeyMessage);
+            Timestamp = AdTraceUtils.TryGetValue(sessionSuccessDataMap, AdTraceUtils.KeyTimestamp);
 
-            string jsonResponseString = AdTraceUtils.TryGetValue(eventSuccessDataMap, AdTraceUtils.KeyJsonResponse);
+            string jsonResponseString = AdTraceUtils.TryGetValue(sessionSuccessDataMap, AdTraceUtils.KeyJsonResponse);
             var jsonResponseNode = JSON.Parse(jsonResponseString);
             if (jsonResponseNode != null && jsonResponseNode.AsObject != null)
             {
@@ -37,19 +33,17 @@ namespace io.adtrace.sdk
             }
         }
 
-        public AdTraceEventSuccess(string jsonString)
+        public AdTraceSessionSuccess(string jsonString)
         {
             var jsonNode = JSON.Parse(jsonString);
-            if (jsonNode == null)
-            {
+            if (jsonNode == null) 
+			{
                 return;
             }
 
             Adid = AdTraceUtils.GetJsonString(jsonNode, AdTraceUtils.KeyAdid);
             Message = AdTraceUtils.GetJsonString(jsonNode, AdTraceUtils.KeyMessage);
             Timestamp = AdTraceUtils.GetJsonString(jsonNode, AdTraceUtils.KeyTimestamp);
-            EventToken = AdTraceUtils.GetJsonString(jsonNode, AdTraceUtils.KeyEventToken);
-            CallbackId = AdTraceUtils.GetJsonString(jsonNode, AdTraceUtils.KeyCallbackId);
 
             var jsonResponseNode = jsonNode[AdTraceUtils.KeyJsonResponse];
             if (jsonResponseNode == null)

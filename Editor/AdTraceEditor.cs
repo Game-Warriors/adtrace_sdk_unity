@@ -44,79 +44,7 @@ public class AdTraceEditor : AssetPostprocessor
             "\nNote: Make sure to save your project files in order for this change to take effect.", "OK");
     }
 
-    [MenuItem("Assets/AdTrace/Export Unity Package")]
-    public static void ExportAdTraceUnityPackage()
-    {
-        string exportedFileName = "AdTrace.unitypackage";
-        string assetsPath = "Assets/AdTrace";
-        List<string> assetsToExport = new List<string>();
 
-        // AdTrace Assets.
-        assetsToExport.Add(assetsPath + "/3rd Party/SimpleJSON.cs");
-
-        assetsToExport.Add(assetsPath + "/Android/adtrace-android.jar");
-        assetsToExport.Add(assetsPath + "/Android/AdTraceAndroid.cs");
-        assetsToExport.Add(assetsPath + "/Android/AdTraceAndroidManifest.xml");
-
-        assetsToExport.Add(assetsPath + "/Editor/AdTraceEditor.cs");
-        assetsToExport.Add(assetsPath + "/Editor/AdTraceSettings.cs");
-
-        assetsToExport.Add(assetsPath + "/ExampleGUI/ExampleGUI.cs");
-        assetsToExport.Add(assetsPath + "/ExampleGUI/ExampleGUI.prefab");
-        assetsToExport.Add(assetsPath + "/ExampleGUI/ExampleGUI.unity");
-
-        assetsToExport.Add(assetsPath + "/iOS/ADTAttribution.h");
-        assetsToExport.Add(assetsPath + "/iOS/ADTConfig.h");
-        assetsToExport.Add(assetsPath + "/iOS/ADTEvent.h");
-        assetsToExport.Add(assetsPath + "/iOS/ADTEventFailure.h");
-        assetsToExport.Add(assetsPath + "/iOS/ADTEventSuccess.h");
-        assetsToExport.Add(assetsPath + "/iOS/ADTLogger.h");
-        assetsToExport.Add(assetsPath + "/iOS/ADTSessionFailure.h");
-        assetsToExport.Add(assetsPath + "/iOS/ADTSessionSuccess.h");
-        assetsToExport.Add(assetsPath + "/iOS/ADTSubscription.h");
-        assetsToExport.Add(assetsPath + "/iOS/AdTrace.h");
-        assetsToExport.Add(assetsPath + "/iOS/AdTraceiOS.cs");
-        assetsToExport.Add(assetsPath + "/iOS/AdTraceSdk.a");
-        assetsToExport.Add(assetsPath + "/iOS/AdTraceUnity.h");
-        assetsToExport.Add(assetsPath + "/iOS/AdTraceUnity.mm");
-        assetsToExport.Add(assetsPath + "/iOS/AdTraceUnityDelegate.h");
-        assetsToExport.Add(assetsPath + "/iOS/AdTraceUnityDelegate.mm");
-
-        assetsToExport.Add(assetsPath + "/Prefab/AdTrace.prefab");
-
-        assetsToExport.Add(assetsPath + "/Unity/AdTrace.cs");
-        assetsToExport.Add(assetsPath + "/Unity/AdTraceAppStoreSubscription.cs");
-        assetsToExport.Add(assetsPath + "/Unity/AdTraceAttribution.cs");
-        assetsToExport.Add(assetsPath + "/Unity/AdTraceConfig.cs");
-        assetsToExport.Add(assetsPath + "/Unity/AdTraceEnvironment.cs");
-        assetsToExport.Add(assetsPath + "/Unity/AdTraceEvent.cs");
-        assetsToExport.Add(assetsPath + "/Unity/AdTraceEventFailure.cs");
-        assetsToExport.Add(assetsPath + "/Unity/AdTraceEventSuccess.cs");
-        assetsToExport.Add(assetsPath + "/Unity/AdTraceLogLevel.cs");
-        assetsToExport.Add(assetsPath + "/Unity/AdTracePlayStoreSubscription.cs");
-        assetsToExport.Add(assetsPath + "/Unity/AdTraceSessionFailure.cs");
-        assetsToExport.Add(assetsPath + "/Unity/AdTraceSessionSuccess.cs");
-        assetsToExport.Add(assetsPath + "/Unity/AdTraceUtils.cs");
-
-        assetsToExport.Add(assetsPath + "/Windows/AdTraceWindows.cs");
-        assetsToExport.Add(assetsPath + "/Windows/WindowsPcl.dll");
-        assetsToExport.Add(assetsPath + "/Windows/WindowsUap.dll");
-        assetsToExport.Add(assetsPath + "/Windows/Stubs/Win10Interface.dll");
-        assetsToExport.Add(assetsPath + "/Windows/Stubs/Win81Interface.dll");
-        assetsToExport.Add(assetsPath + "/Windows/Stubs/WinWsInterface.dll");
-        assetsToExport.Add(assetsPath + "/Windows/W81/AdTraceWP81.dll");
-        assetsToExport.Add(assetsPath + "/Windows/W81/Win81Interface.dll");
-        assetsToExport.Add(assetsPath + "/Windows/WS/AdTraceWS.dll");
-        assetsToExport.Add(assetsPath + "/Windows/WS/WinWsInterface.dll");
-        assetsToExport.Add(assetsPath + "/Windows/WU10/AdTraceUAP10.dll");
-        assetsToExport.Add(assetsPath + "/Windows/WU10/Win10Interface.dll");
-        assetsToExport.Add(assetsPath + "/Windows/Newtonsoft.Json.dll");
-
-        AssetDatabase.ExportPackage(
-            assetsToExport.ToArray(),
-            exportedFileName,
-            ExportPackageOptions.IncludeDependencies | ExportPackageOptions.Interactive);
-    }
 
     [PostProcessBuild]
     public static void OnPostprocessBuild(BuildTarget target, string projectPath)
@@ -228,7 +156,7 @@ public class AdTraceEditor : AssetPostprocessor
     {
         bool isAdTraceManifestUsed = false;
         string androidPluginsPath = Path.Combine(Application.dataPath, "Plugins/Android");
-        string adtraceManifestPath = Path.Combine(Application.dataPath, "AdTrace/Android/AdTraceAndroidManifest.xml");
+        string adtraceManifestPath = Path.Combine(Application.dataPath, "Packages/com.gamewarriors.adtrace/Samples/Android/AdTraceAndroidManifest.xml");
         string appManifestPath = Path.Combine(Application.dataPath, "Plugins/Android/AndroidManifest.xml");
 
         // Check if user has already created AndroidManifest.xml file in its location.

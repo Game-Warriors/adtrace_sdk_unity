@@ -1,0 +1,21 @@
+{
+  "name": "com.gamewarriors.adtrace",
+  "version": "0.1.0",
+  "displayName": "Ad Trace Unity3D SDK",
+  "description": "This package creating from main adtrace sdk, cleans up and turn to unity3d package, use readme to setup guids",
+  "unity": "2022.3",
+  "unityRelease": "f1",
+  "dependencies": {
+    "com.gameframe.simplejson": "https://github.com/coryleach/SimpleJSON.git"
+  },
+  "keywords": [
+    "Ad Trace sdk",
+    "analytics",
+    "attribution"
+  ],
+  "author": {
+    "name": "Game Warriors",
+    "email": "mahdifada.eddini@outlook.com",
+    "url": "https://www.gamewarriorsstudio.com"
+  }
+}
