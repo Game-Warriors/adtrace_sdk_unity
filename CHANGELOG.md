@@ -1,3 +1,6 @@
+  version : 0.1.2
+  add sdk signature and notification token fields to start up data
+
   version : 0.1.1
   add start up data as scriptable object. add assembly reference
 

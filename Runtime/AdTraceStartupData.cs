@@ -16,6 +16,19 @@ namespace io.adtrace.sdk
         [SerializeField]
         private string _appToken;
         [SerializeField]
+        private long _secretId;
+        [SerializeField]
+        private long _info1;
+        [SerializeField]
+        private long _info2;
+        [SerializeField]
+        private long _info3;
+        [SerializeField]
+        private long _info4;
+        [SerializeField]
+        private string _pushNotificationToken;
+
+        [SerializeField]
         private AdTraceLogLevel _logLevel;
         [SerializeField]
         private AdTraceEnvironment _adTraceEnvironment;
@@ -27,5 +40,13 @@ namespace io.adtrace.sdk
         public string AppToken => _appToken;
         public AdTraceLogLevel LogLevel => _logLevel;
         public AdTraceEnvironment AdTraceEnvironment => _adTraceEnvironment;
+
+        public long SecretId => _secretId;
+        public long Info1 => _info1;
+        public long Info2 => _info2;
+        public long Info3 => _info3;
+        public long Info4 => _info4;
+
+        public string PushNotificationToken => _pushNotificationToken;
     }
 }
