@@ -1,3 +1,6 @@
+  version : 0.1.3
+  add ios build tools. add editor assembly reference
+
   version : 0.1.2
   add sdk signature and notification token fields to start up data
 
