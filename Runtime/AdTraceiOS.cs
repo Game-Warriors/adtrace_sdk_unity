@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace io.adtrace.sdk
 {
-#if UNITY_IOS
+#if UNITY_IOS && USE_ADTRACE
     public class AdtraceiOS
     {
         private const string sdkPrefix = "unity2.0.1";

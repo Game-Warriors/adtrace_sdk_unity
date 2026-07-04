@@ -1,3 +1,6 @@
+  version : 0.1.6
+  add USE_ADTRACE preprocessor
+
   version : 0.1.5
   fix ios library enable state
 

@@ -20,7 +20,7 @@ namespace io.adtrace.sdk
         public AdTraceLogLevel logLevel = AdTraceLogLevel.Info;
         public AdTraceEnvironment environment = AdTraceEnvironment.Sandbox;
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
         // Delegate references for iOS callback triggering
         private static List<Action<int>> authorizationStatusDelegates = null;
         private static Action<string> deferredDeeplinkDelegate = null;
@@ -59,7 +59,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
                 // No action, iOS SDK is subscribed to iOS lifecycle notifications.
 #elif UNITY_ANDROID
                 if (pauseStatus)
@@ -97,7 +97,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
                 AdTrace.eventSuccessDelegate = adtraceConfig.getEventSuccessDelegate();
                 AdTrace.eventFailureDelegate = adtraceConfig.getEventFailureDelegate();
                 AdTrace.sessionSuccessDelegate = adtraceConfig.getSessionSuccessDelegate();
@@ -111,7 +111,7 @@ namespace io.adtrace.sdk
 #elif (UNITY_WSA || UNITY_WP8)
                 AdTraceWindows.Start(adtraceConfig);
 #else
-                Debug.Log(errorMsgPlatform);
+            Debug.Log(errorMsgPlatform);
 #endif
         }
 
@@ -127,7 +127,7 @@ namespace io.adtrace.sdk
                 Debug.Log("[AdTrace]: Missing event to track.");
                 return;
             }
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.TrackEvent(adtraceEvent);
 #elif UNITY_ANDROID
             AdTraceAndroid.TrackEvent(adtraceEvent);
@@ -145,7 +145,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.SetEnabled(enabled);
 #elif UNITY_ANDROID
             AdTraceAndroid.SetEnabled(enabled);
@@ -163,7 +163,7 @@ namespace io.adtrace.sdk
                 return false;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             return AdtraceiOS.IsEnabled();
 #elif UNITY_ANDROID
             return AdTraceAndroid.IsEnabled();
@@ -182,7 +182,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.SetOfflineMode(enabled);
 #elif UNITY_ANDROID
             AdTraceAndroid.SetOfflineMode(enabled);
@@ -200,7 +200,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.SetDeviceToken(deviceToken);
 #elif UNITY_ANDROID
             AdTraceAndroid.SetDeviceToken(deviceToken);
@@ -218,7 +218,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.GdprForgetMe();
 #elif UNITY_ANDROID
             AdTraceAndroid.GdprForgetMe();
@@ -236,7 +236,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.DisableThirdPartySharing();
 #elif UNITY_ANDROID
             AdTraceAndroid.DisableThirdPartySharing();
@@ -254,7 +254,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.AppWillOpenUrl(url);
 #elif UNITY_ANDROID
             AdTraceAndroid.AppWillOpenUrl(url);
@@ -272,7 +272,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.SendFirstPackages();
 #elif UNITY_ANDROID
             AdTraceAndroid.SendFirstPackages();
@@ -290,7 +290,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.AddSessionPartnerParameter(key, value);
 #elif UNITY_ANDROID
             AdTraceAndroid.AddSessionPartnerParameter(key, value);
@@ -308,7 +308,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.AddSessionCallbackParameter(key, value);
 #elif UNITY_ANDROID
             AdTraceAndroid.AddSessionCallbackParameter(key, value);
@@ -326,7 +326,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.RemoveSessionPartnerParameter(key);
 #elif UNITY_ANDROID
             AdTraceAndroid.RemoveSessionPartnerParameter(key);
@@ -344,7 +344,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.RemoveSessionCallbackParameter(key);
 #elif UNITY_ANDROID
             AdTraceAndroid.RemoveSessionCallbackParameter(key);
@@ -362,7 +362,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.ResetSessionPartnerParameters();
 #elif UNITY_ANDROID
             AdTraceAndroid.ResetSessionPartnerParameters();
@@ -380,7 +380,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.ResetSessionCallbackParameters();
 #elif UNITY_ANDROID
             AdTraceAndroid.ResetSessionCallbackParameters();
@@ -398,7 +398,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.TrackAdRevenue(source, payload);
 #elif UNITY_ANDROID
             AdTraceAndroid.TrackAdRevenue(source, payload);
@@ -416,7 +416,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.TrackAdRevenue(adRevenue);
 #elif UNITY_ANDROID
             AdTraceAndroid.TrackAdRevenue(adRevenue);
@@ -434,7 +434,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.TrackAppStoreSubscription(subscription);
 #elif UNITY_ANDROID
             Debug.Log("[AdTrace]: App Store subscription tracking is only supported for iOS platform.");
@@ -452,7 +452,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             Debug.Log("[AdTrace]: Play Store subscription tracking is only supported for Android platform.");
 #elif UNITY_ANDROID
             AdTraceAndroid.TrackPlayStoreSubscription(subscription);
@@ -470,7 +470,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.TrackThirdPartySharing(thirdPartySharing);
 #elif UNITY_ANDROID
             AdTraceAndroid.TrackThirdPartySharing(thirdPartySharing);
@@ -488,7 +488,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.TrackMeasurementConsent(measurementConsent);
 #elif UNITY_ANDROID
             AdTraceAndroid.TrackMeasurementConsent(measurementConsent);
@@ -506,7 +506,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             if (AdTrace.authorizationStatusDelegates == null)
             {
                 AdTrace.authorizationStatusDelegates = new List<Action<int>>();
@@ -529,7 +529,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.UpdateConversionValue(conversionValue);
 #elif UNITY_ANDROID
             Debug.Log("[AdTrace]: Updating SKAdNetwork conversion value is only supported for iOS platform.");
@@ -547,7 +547,7 @@ namespace io.adtrace.sdk
                 return -1;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             return AdtraceiOS.GetAppTrackingAuthorizationStatus();
 #elif UNITY_ANDROID
             Debug.Log("[AdTrace]: Error! App tracking authorization status is only supported for iOS platform.");
@@ -568,7 +568,7 @@ namespace io.adtrace.sdk
                 return string.Empty;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             return AdtraceiOS.GetAdid();
 #elif UNITY_ANDROID
             return AdTraceAndroid.GetAdid();
@@ -587,7 +587,7 @@ namespace io.adtrace.sdk
                 return null;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             return AdtraceiOS.GetAttribution();
 #elif UNITY_ANDROID
             return AdTraceAndroid.GetAttribution();
@@ -606,7 +606,7 @@ namespace io.adtrace.sdk
                 return string.Empty;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             Debug.Log("[AdTrace]: Error! Windows Advertising ID is not available on iOS platform.");
             return string.Empty;
 #elif UNITY_ANDROID
@@ -627,7 +627,7 @@ namespace io.adtrace.sdk
                 return string.Empty;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             return AdtraceiOS.GetIdfa();
 #elif UNITY_ANDROID
             Debug.Log("[AdTrace]: Error! IDFA is not available on Android platform.");
@@ -648,7 +648,7 @@ namespace io.adtrace.sdk
                 return string.Empty;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             return AdtraceiOS.GetSdkVersion();
 #elif UNITY_ANDROID
             return AdTraceAndroid.GetSdkVersion();
@@ -668,7 +668,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             Debug.Log("[AdTrace]: Install referrer is not available on iOS platform.");
 #elif UNITY_ANDROID
             AdTraceAndroid.SetReferrer(referrer);
@@ -686,7 +686,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             Debug.Log("[AdTrace]: Google Play Advertising ID is not available on iOS platform.");
             onDeviceIdsRead(string.Empty);
 #elif UNITY_ANDROID
@@ -706,7 +706,7 @@ namespace io.adtrace.sdk
                 return string.Empty;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             Debug.Log("[AdTrace]: Amazon Advertising ID is not available on iOS platform.");
             return string.Empty;
 #elif UNITY_ANDROID
@@ -720,7 +720,7 @@ namespace io.adtrace.sdk
 #endif
         }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
         public void GetNativeAttribution(string attributionData)
         {
             if (IsEditor()) 
@@ -883,7 +883,7 @@ namespace io.adtrace.sdk
                 return;
             }
 
-#if UNITY_IOS
+ #if UNITY_IOS && USE_ADTRACE
             AdtraceiOS.SetTestOptions(testOptions);
 #elif UNITY_ANDROID
             AdTraceAndroid.SetTestOptions(testOptions);
