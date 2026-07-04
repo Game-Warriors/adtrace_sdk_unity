@@ -1,3 +1,6 @@
+  version : 0.1.5
+  fix ios library enable state
+
   version : 0.1.4
   fix startup data missed
 
