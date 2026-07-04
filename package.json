@@ -1,6 +1,6 @@
 {
   "name": "com.gamewarriors.adtrace",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "displayName": "Ad Trace Unity3D SDK",
   "description": "This package creating from main adtrace sdk, cleans up and turn to unity3d package, use readme to setup guids",
   "unity": "2022.3",

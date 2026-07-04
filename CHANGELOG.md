@@ -1,3 +1,6 @@
+  version : 0.1.4
+  fix startup data missed
+
   version : 0.1.3
   add ios build tools. add editor assembly reference
 
